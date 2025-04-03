@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "FasterScale (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "FasterScale (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
