@@ -15,6 +15,8 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using FasterScale.Services;
+using FasterScale.Pages;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -39,12 +41,32 @@ namespace FasterScale
         /// Invoked when the application is launched.
         /// </summary>
         /// <param name="args">Details about the launch request and process.</param>
-        protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
+        protected override async void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
+            // Komut satırı parametreleri kontrol et
+            string[] cmdArgs = Environment.GetCommandLineArgs();
+            bool skipUpdate = cmdArgs.Any(arg => arg.Equals("--skip-update", StringComparison.OrdinalIgnoreCase));
+
+            if (!skipUpdate)
+            {
+                // Güncelleme kontrolü yap
+                var updateService = new UpdateService();
+                var (hasUpdate, currentVersion, latestVersion) = await updateService.CheckForUpdateAvailability();
+
+                if (hasUpdate)
+                {
+                    // Güncelleme varsa UpdateWindow'u aç
+                    m_window = new UpdateWindow();
+                    m_window.Activate();
+                    return;
+                }
+            }
+
+            // Güncelleme yoksa veya atlanırsa MainWindow'u aç
             m_window = new MainWindow();
             m_window.Activate();
         }
 
-        private Window? m_window;
+        private Window m_window;
     }
 }

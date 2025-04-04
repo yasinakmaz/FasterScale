@@ -5,19 +5,17 @@ namespace FasterScale
         public MainWindow()
         {
             this.InitializeComponent();
-            // Baþlangýçta varsayýlan sayfayý yükle
             ContentFrame.Navigate(typeof(DashboardPage));
         }
         public NavigationView ViewPanel => NvView;
         private void NvView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
-            if (args.IsSettingsInvoked) // Ayarlar butonuna basýldýysa
+            if (args.IsSettingsInvoked)
             {
-                ContentFrame.Navigate(typeof(SettingsPage)); // Ayarlar sayfasýna git
+                ContentFrame.Navigate(typeof(SettingsPage));
                 return;
             }
 
-            // Seçili öðeyi bul ve yönlendir
             var selectedItem = sender.MenuItems.OfType<NavigationViewItem>()
                                 .FirstOrDefault(x => (string)x.Content == (string)args.InvokedItem);
 

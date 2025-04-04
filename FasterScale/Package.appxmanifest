@@ -9,8 +9,8 @@
 
   <Identity
     Name="8da7b4a6-b657-4a78-8841-1ca70dcc0269"
-    Publisher="CN=YASIN"
-    Version="1.0.0.0" />
+    Publisher="CN=TRADE FUSION"
+    Version="1.0.2.0" />
 
   <mp:PhoneIdentity PhoneProductId="8da7b4a6-b657-4a78-8841-1ca70dcc0269" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 

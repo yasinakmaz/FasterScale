@@ -58,6 +58,8 @@ global using System.Transactions;
 global using System.Web;
 global using System.Windows;
 global using System.Xml;
+global using FasterScale.Services;
+global using System.Threading.Tasks;
 
 global using Newtonsoft.Json.Bson;
 global using Newtonsoft.Json.Converters;
